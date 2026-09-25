@@ -130,6 +130,7 @@ DoublyLinkedList<T>::~DoublyLinkedList() {
  */
 template <typename T>
 void DoublyLinkedList<T>::insertFront(const T &value) {
+<<<<<<< HEAD
 	
 	Node *newNode ;
 	newNode->data = value;
@@ -139,6 +140,9 @@ void DoublyLinkedList<T>::insertFront(const T &value) {
 	head->next=newNode;
 	numElements++;
 
+=======
+	insertBefore(head->next, value);
+>>>>>>> f9d941e (Completar doubly linked list)
 }
 
 /**
@@ -160,6 +164,7 @@ void DoublyLinkedList<T>::insertBack(const T &value) {
  */
 template <typename T>
 bool DoublyLinkedList<T>::search(const T &value) const {
+<<<<<<< HEAD
 	if (head->next == tail){
 		return false;
 	}
@@ -170,6 +175,15 @@ bool DoublyLinkedList<T>::search(const T &value) const {
 		}
 		curr = curr->next;
 	}
+=======
+	Node<T>*current=head->next;
+    while (current!=tail) {
+        if (current->data==value) {
+            return true;
+        }
+        current = current->next;
+    }
+>>>>>>> f9d941e (Completar doubly linked list)
 	return false;
 }
 
@@ -199,7 +213,11 @@ bool DoublyLinkedList<T>::removeFront() {
  */
 template <typename T>
 bool DoublyLinkedList<T>::removeBack() {
-	return false;
+    if (count==0) {
+        return false;
+    }
+    removeNode(tail->prev);
+    return true;
 }
 
 /**
@@ -220,16 +238,16 @@ bool DoublyLinkedList<T>::remove(const T &value) {
  */
 template <typename T>
 void DoublyLinkedList<T>::print() const {
-	Node *current = head->next;
-	std::cout << "[ ";
-	while (current != tail) {
-		std::cout << current->data;
-		if (current->next != tail) {
-			std::cout << ", ";
-		}
-		current = current->next;
-	}
-	std::cout << " ]" << std::endl;
+    Node *current=head->next;
+    std::cout<<"[ ";
+    while (current!=tail) {
+        std::cout<<current->data;
+        if (current->next!=tail) {
+            std::cout<<", ";
+        }
+        current=current->next;
+    }
+    std::cout<<" ]"<<std::endl;
 }
 
 #endif
