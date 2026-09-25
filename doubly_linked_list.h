@@ -187,7 +187,7 @@ bool DoublyLinkedList<T>::removeFront() {
 	Node *toDelete=head->next;
 	toDelete->next->prev= head;
 	head->next=toDelete->next;
-	
+	numElements--;
 	return true;
 }
 
