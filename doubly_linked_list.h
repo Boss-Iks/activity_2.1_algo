@@ -130,9 +130,14 @@ DoublyLinkedList<T>::~DoublyLinkedList() {
  */
 template <typename T>
 void DoublyLinkedList<T>::insertFront(const T &value) {
-	Node *newNode = new Node(value, head, head->next);
+	Node *newNode ;
+	newNode->data = value;
+	newNode->next = head->next;
+	newNode->prev= head;
 	head->next->prev=newNode;
 	head->next=newNode;
+	numElements++;
+
 }
 
 /**
@@ -154,6 +159,16 @@ void DoublyLinkedList<T>::insertBack(const T &value) {
  */
 template <typename T>
 bool DoublyLinkedList<T>::search(const T &value) const {
+	if (head->next == tail){
+		return false;
+	}
+	Node *curr = head->next;
+	while( curr != tail){
+		if(curr->data == value ){
+			return true;
+		}
+		curr = curr->next;
+	}
 	return false;
 }
 
