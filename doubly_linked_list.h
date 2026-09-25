@@ -126,10 +126,13 @@ DoublyLinkedList<T>::~DoublyLinkedList() {
  * Inserts at the front. Returns: none.
  * @param value Element to insert.
  * TODO: Use insertBefore with the node after head.
- * Complexity: O( ) -
+ * Complexity: O(1) -
  */
 template <typename T>
 void DoublyLinkedList<T>::insertFront(const T &value) {
+	Node *newNode = new Node(value, head, head->next);
+	head->next->prev=newNode;
+	head->next=newNode;
 }
 
 /**
