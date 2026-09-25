@@ -130,6 +130,7 @@ DoublyLinkedList<T>::~DoublyLinkedList() {
  */
 template <typename T>
 void DoublyLinkedList<T>::insertFront(const T &value) {
+	
 	Node *newNode ;
 	newNode->data = value;
 	newNode->next = head->next;
@@ -155,7 +156,7 @@ void DoublyLinkedList<T>::insertBack(const T &value) {
  * @param value Element to search for.
  * @return True if found, false otherwise.
  * TODO: Traverse from head->next to tail, excluding both sentinels.
- * Complexity: O( ) -
+ * Complexity: O(n) -
  */
 template <typename T>
 bool DoublyLinkedList<T>::search(const T &value) const {
@@ -180,7 +181,14 @@ bool DoublyLinkedList<T>::search(const T &value) const {
  */
 template <typename T>
 bool DoublyLinkedList<T>::removeFront() {
-	return false;
+	if(head->next == tail){
+		return false;
+	}
+	Node *toDelete=head->next;
+	toDelete->next->prev= head;
+	head->next=toDelete->next;
+	
+	return true;
 }
 
 /**
